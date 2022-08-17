@@ -12,43 +12,52 @@
     <script defer src="/scripts.js/scripts.js"></script>
   </head>
   <body>
-    <div class="left-side">
-      <h1>GUESS MY NUMBER THE GAME</h1>
-      <h3>(BETWEN 0 AND 20)</h3>
-      <div class="layer-scores">
-        <h4>SCORE: 20</h4>
-      </div>
-      <div class="layer-scores">
-        <h4>HIGH SCORE: 15</h4>
-      </div>
-    </div>
-    <button class="btn-try-again">TRY AGAIN!</button>
-    <div class="right-side">
-      <div class="main-container">
-        <div class="display-guess-number">
-          <input type="number" />
+    <div class="main-container">
+      <div class="left-side">
+        <div class="wrapper">
+          <h1>
+            GUESS <br />
+            MY <br />NUMBER <br />THE GAME!
+          </h1>
+          <h4>(BETWEN 0 AND 20)</h4>
         </div>
-        <div class="layer-screen-numbers">
-          <div class="three-numbers-element">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
+        <div class="wrapper">
+          <div class="layer-scores">
+            <h3>SCORE: 20</h3>
           </div>
-          <div class="three-numbers-element">
-            <span>4</span>
-            <span>5</span>
-            <span>6</span>
-          </div>
-          <div class="three-numbers-element">
-            <span>7</span>
-            <span>8</span>
-            <span>9</span>
-          </div>
-          <div class="one-number-element">
-            <span>0</span>
+          <div class="layer-scores">
+            <h3>HIGH SCORE: 15</h3>
           </div>
         </div>
-        <button id="btn-check-number">CHECK</button>
+        <button class="btn-try-again">TRY AGAIN!</button>
+      </div>
+      <div class="right-side">
+        <div class="main-container-numbers">
+          <div class="display-guess-number">
+            <input type="number" />
+          </div>
+          <div class="layer-screen-numbers">
+            <div class="three-numbers-element">
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+            </div>
+            <div class="three-numbers-element">
+              <span>4</span>
+              <span>5</span>
+              <span>6</span>
+            </div>
+            <div class="three-numbers-element">
+              <span>7</span>
+              <span>8</span>
+              <span>9</span>
+            </div>
+            <div class="one-number-element">
+              <span>0</span>
+            </div>
+          </div>
+          <button id="btn-check-number">CHECK</button>
+        </div>
       </div>
     </div>
   </body>

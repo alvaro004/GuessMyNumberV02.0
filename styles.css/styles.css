@@ -24,7 +24,7 @@ h4 {
 
 .main-container {
   display: flex;
-  width: 90%;
+  width: 80%;
   margin: auto;
 }
 
@@ -56,6 +56,12 @@ h4 {
   padding: 0.8rem;
 }
 
+.layer-scores:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  transition: 0.4s;
+}
+
 .wrapper .layer-scores h4 {
   margin: 0 0 0 2rem;
 }
@@ -64,25 +70,40 @@ h4 {
   margin: 0 0 0 1.5rem;
 }
 
+/* button styles */
+
 .left-side button {
+  margin: 0 0 4rem 0;
+}
+
+.left-side button,
+.right-side button {
   border: none;
   width: fit-content;
   font-size: 2.4rem;
   font-weight: bold;
   padding: 1.4rem;
   border-radius: 1rem;
-  margin: 0 0 4rem 0;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
-.left-side button:hover {
+.left-side button:hover,
+.right-side button:hover {
   cursor: pointer;
   background-color: rgb(168, 159, 159);
   color: rgb(255, 255, 255);
   transition: 0.4s;
 }
 
-.left-side button:active {
+.left-side button:active,
+.right-side button:active {
   transform: translateY(-10%);
+}
+
+.btn-1 {
+  margin: 0 2rem 0 0;
 }
 
 /* ------------------------- */
@@ -90,12 +111,14 @@ h4 {
 
 .right-side {
   width: 60vw;
+  display: flex;
+  justify-content: center;
 }
 
 .main-container-numbers {
   background-color: rgb(235, 235, 235);
-  width: 60rem;
-  height: 90vh;
+  width: 55rem;
+  height: 93vh;
   margin: 3rem 0 0 0;
   border-radius: 1.5rem;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -105,3 +128,105 @@ h4 {
   align-items: center;
   justify-content: space-around;
 }
+
+.main-container-numbers:hover {
+  box-shadow: 0 0.4rem 3rem rgba(0, 0, 0, 15%);
+  transition: 0.4s;
+}
+
+.display-guess-number #input-number {
+  border: none;
+  font-size: 6.4rem;
+  font-weight: bolder;
+  text-align: center;
+  width: 10rem;
+}
+
+.display-guess-number {
+  width: 13rem;
+  height: 13rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 1.5rem;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* remove arrows from input */
+
+.display-guess-number input::-webkit-outer-spin-button,
+.display-guess-number input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* --------- */
+
+.display-guess-number #input-number:focus {
+  outline: none;
+  border: none;
+}
+
+#display-message {
+  font-size: 1.8rem;
+}
+
+/* numbers styles */
+
+.layer-screen-numbers {
+  width: 25vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 1rem;
+}
+
+.layer-screen-numbers span {
+  font-size: 4vw;
+  font-weight: bold;
+}
+
+.layer-screen-numbers span:hover {
+  cursor: pointer;
+  color: rgb(204, 204, 204);
+  transition: 0.4s;
+}
+
+.layer-screen-numbers span:active {
+  transform: translateY(-10%);
+}
+
+.three-numbers-element {
+  display: flex;
+  justify-content: space-evenly;
+  width: inherit;
+}
+
+.three-numbers-element span {
+  width: 4rem;
+}
+
+/* //styles for lines */
+
+.row {
+  height: 0.2rem;
+  width: 21vw;
+  background: rgb(217, 217, 217);
+}
+
+.colum-1 {
+  transform: translate(18%, 20%) rotate(90deg);
+}
+
+.colum-2 {
+  transform: translate(-18%, 20%) rotate(90deg);
+}
+
+/* -----------MOBILE DESIGN----------- */

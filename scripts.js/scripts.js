@@ -4,6 +4,9 @@ const displayGuessNumber = document.getElementById('display-guess-number-id');
 const mainConatinerNumbers = document.querySelector('.main-container-numbers');
 const inputNumber = document.getElementById('input-number');
 const checkNumber = document.getElementById('btn-check-number');
+const scoreText = document.getElementById('score-text');
+const highScoreText = document.getElementById('high-score-text');
+const tryAgainBtn = document.getElementById('btn-try-again');
 
 const n1 = document.getElementById('n-1');
 const n2 = document.getElementById('n-2');
@@ -19,9 +22,22 @@ const n0 = document.getElementById('n-0');
 let numbers = [];
 let numberToInt;
 let numberToDisplay = '';
-const randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
+let score = 10;
+let highScore = '';
+let randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
 
-console.log(randonNumber);
+const setScoreScreen = () => {
+  scoreText.textContent = `SCORE: ${score}`;
+};
+
+const setHighScore = () => {
+  highScoreText.textContent = `HIGH SCORE: ${highScore}`;
+};
+
+//showing scores
+
+setScoreScreen();
+setHighScore();
 
 // displaying numbers in the screen
 
@@ -128,8 +144,6 @@ const toggleStylesWrong = () => {
 
 const toggleStylesWin = () => {
   displayGuessNumber.classList.toggle('display-guess-number-win');
-  // checkNumber.classList.toggle('disable-button');
-  // deleteBtn.classList.toggle('disable-button');
   inputNumber.classList.toggle('input-bkg-white');
   mainConatinerNumbers.classList.toggle('disable-button');
 };
@@ -149,15 +163,38 @@ deleteBtn.addEventListener('click', () => {
 });
 
 checkNumber.addEventListener('click', () => {
-  //conditions evaluating the number
-  if (numberToInt === randonNumber) {
-    displayMessage.textContent = 'Victory!';
-    toggleStylesWin();
-  } else if (numberToInt > randonNumber) {
-    displayMessage.textContent = 'Too high!';
-    callingToggleStylesWrong();
+  //decrease teh counter
+
+  if (score > 0) {
+    score -= 1;
+    setScoreScreen();
+    //conditions evaluating the number
+    if (numberToInt === randonNumber) {
+      displayMessage.textContent = 'Victory!';
+      toggleStylesWin();
+      highScore = score;
+      setHighScore();
+    } else if (numberToInt > randonNumber) {
+      displayMessage.textContent = 'Too high!';
+      callingToggleStylesWrong();
+    } else {
+      displayMessage.textContent = 'Too low!';
+      callingToggleStylesWrong();
+    }
   } else {
-    displayMessage.textContent = 'Too low!';
-    callingToggleStylesWrong();
+    mainConatinerNumbers.classList.toggle('disable-button');
+    highScore = score;
+    setHighScore();
   }
+});
+
+tryAgainBtn.addEventListener('click', () => {
+  randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
+  score = 10;
+  setScoreScreen();
+  resetDisplayNumber();
+
+  displayGuessNumber.classList.remove('display-guess-number-win');
+  inputNumber.classList.remove('input-bkg-white');
+  mainConatinerNumbers.classList.remove('disable-button');
 });

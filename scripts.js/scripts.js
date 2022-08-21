@@ -1,6 +1,7 @@
 const deleteBtn = document.getElementById('btn-delete-number');
 const displayMessage = document.getElementById('display-message');
 const displayGuessNumber = document.getElementById('display-guess-number-id');
+const mainConatinerNumbers = document.querySelector('.main-container-numbers');
 const inputNumber = document.getElementById('input-number');
 const checkNumber = document.getElementById('btn-check-number');
 
@@ -127,9 +128,10 @@ const toggleStylesWrong = () => {
 
 const toggleStylesWin = () => {
   displayGuessNumber.classList.toggle('display-guess-number-win');
-  checkNumber.classList.toggle('disable-button');
-  deleteBtn.classList.toggle('disable-button');
+  // checkNumber.classList.toggle('disable-button');
+  // deleteBtn.classList.toggle('disable-button');
   inputNumber.classList.toggle('input-bkg-white');
+  mainConatinerNumbers.classList.toggle('disable-button');
 };
 
 const callingToggleStylesWrong = () => {

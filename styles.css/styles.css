@@ -26,6 +26,7 @@ h4 {
   display: flex;
   width: 80%;
   margin: auto;
+  height: 100vh;
 }
 
 .left-side,
@@ -191,10 +192,11 @@ h4 {
 .layer-screen-numbers span {
   font-size: 4vw;
   font-weight: bold;
+  cursor: pointer;
+  user-select: none;
 }
 
 .layer-screen-numbers span:hover {
-  cursor: pointer;
   color: rgb(204, 204, 204);
   transition: 0.4s;
 }
@@ -230,3 +232,100 @@ h4 {
 }
 
 /* -----------MOBILE DESIGN----------- */
+
+/* Media Query */
+@media screen and (max-width: 960px) {
+  html {
+    font-size: 45%;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+  h4 {
+    font-size: 1.4rem;
+  }
+
+  .wrapper h1,
+  .wrapper h4 {
+    text-align: center;
+  }
+
+  .main-container {
+    flex-direction: column;
+  }
+
+  .left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+    width: unset;
+    height: fit-content;
+  }
+
+  .wrapper-scores {
+    margin: 2rem 0 0 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .wrapper .layer-scores {
+    width: 20rem;
+  }
+
+  .left-side button,
+  .right-side button {
+    font-size: 2rem;
+  }
+
+  /* #btn-try-again {
+    margin: 0 0 2rem 0;
+  } */
+
+  /* Right Side */
+
+  .right-side {
+    width: unset;
+    height: unset;
+  }
+
+  .main-container-numbers {
+    height: 60rem;
+    margin: 0 0 3rem 0;
+  }
+
+  .display-guess-number {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .display-guess-number #input-number {
+    font-size: 4.4rem;
+  }
+
+  .layer-screen-numbers {
+    height: 30rem;
+    width: 30rem;
+  }
+
+  .layer-screen-numbers span {
+    font-size: 5rem;
+  }
+
+  .row {
+    width: 25rem;
+  }
+
+  .colum-1 {
+    transform: translate(15%, 20%) rotate(90deg);
+  }
+
+  .wrapper-btn {
+    margin: 0 0 1rem 0;
+  }
+}

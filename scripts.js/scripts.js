@@ -183,6 +183,7 @@ checkNumber.addEventListener('click', () => {
     }
   } else {
     mainConatinerNumbers.classList.toggle('disable-button');
+    mainConatinerNumbers.classList.toggle('main-container-loose');
     highScore = score;
     setHighScore();
   }
@@ -197,4 +198,5 @@ tryAgainBtn.addEventListener('click', () => {
   displayGuessNumber.classList.remove('display-guess-number-win');
   inputNumber.classList.remove('input-bkg-white');
   mainConatinerNumbers.classList.remove('disable-button');
+  mainConatinerNumbers.classList.remove('main-container-loose');
 });

@@ -40,6 +40,11 @@ h4 {
   width: 40vw;
 }
 
+.disable-button {
+  pointer-events: none;
+  background-color: #edf1f2 !important;
+}
+
 .left-side .wrapper h1 {
   margin: 4rem 0 0 0;
 }
@@ -141,6 +146,7 @@ h4 {
   font-weight: bolder;
   text-align: center;
   width: 10rem;
+  background-color: unset;
 }
 
 .display-guess-number {
@@ -153,6 +159,17 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.4s;
+}
+
+.display-guess-number-wrong {
+  background-color: rgb(241, 84, 84);
+  transition: 0.4s;
+}
+
+.display-guess-number-win {
+  background-color: rgb(88, 205, 85);
+  transition: 0.4s;
 }
 
 /* remove arrows from input */
@@ -168,6 +185,10 @@ h4 {
 .display-guess-number #input-number:focus {
   outline: none;
   border: none;
+}
+
+.input-bkg-white {
+  color: rgb(255, 255, 255);
 }
 
 #display-message {

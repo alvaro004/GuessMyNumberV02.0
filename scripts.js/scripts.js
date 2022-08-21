@@ -1,6 +1,9 @@
 const deleteBtn = document.getElementById('btn-delete-number');
+const displayMessage = document.getElementById('display-message');
+const displayGuessNumber = document.getElementById('display-guess-number-id');
 const inputNumber = document.getElementById('input-number');
 const checkNumber = document.getElementById('btn-check-number');
+
 const n1 = document.getElementById('n-1');
 const n2 = document.getElementById('n-2');
 const n3 = document.getElementById('n-3');
@@ -13,18 +16,38 @@ const n9 = document.getElementById('n-9');
 const n0 = document.getElementById('n-0');
 
 let numbers = [];
+let numberToInt;
 let numberToDisplay = '';
 const randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
 
 console.log(randonNumber);
 
-const mergeNumbers = (numbers) => {
-  numbers.map((number) => (numberToDisplay += `${number}`));
-  inputNumber.value = numberToDisplay;
+// displaying numbers in the screen
+
+const displayNumber = (numToDisplay) => {
+  inputNumber.value = numToDisplay;
 };
 
+// reset elements
+
+const resetDisplayNumber = () => {
+  numberToInt = '';
+  numberToDisplay = '';
+  inputNumber.value = numberToInt;
+};
+
+// merge all numbers, then display it in the screen
+
+const mergeNumbers = (numbers) => {
+  numbers.map((number) => (numberToDisplay += `${number}`));
+  numberToInt = parseInt(numberToDisplay);
+  displayNumber(numberToInt);
+};
+
+// getting the numbers from the keyboard
+
 const retrieveNumber = (number) => {
-  numbers.push(number);
+  numbers.push(parseInt(number));
   mergeNumbers(numbers);
   numbers.shift();
 };
@@ -50,8 +73,9 @@ const deleteNumbers = (arr) => {
   // set de new value in numberToDisplay converting all the element in arr
   //to astring and then replacing the comas
   numberToDisplay = arr.toString().replace(/,/g, '');
+  numberToInt = parseInt(numberToDisplay) ? parseInt(numberToDisplay) : '';
   //showing in the screen
-  inputNumber.value = numberToDisplay;
+  displayNumber(numberToInt);
 };
 
 document.addEventListener('keyup', (e) => {
@@ -96,15 +120,42 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
+const toggleStylesWrong = () => {
+  displayGuessNumber.classList.toggle('display-guess-number-wrong');
+  inputNumber.classList.toggle('input-bkg-white');
+};
+
+const toggleStylesWin = () => {
+  displayGuessNumber.classList.toggle('display-guess-number-win');
+  checkNumber.classList.toggle('disable-button');
+  deleteBtn.classList.toggle('disable-button');
+  inputNumber.classList.toggle('input-bkg-white');
+};
+
+const callingToggleStylesWrong = () => {
+  // toggle the styles
+  toggleStylesWrong();
+  // waiting to remove them
+  setTimeout(() => {
+    toggleStylesWrong();
+    resetDisplayNumber();
+  }, 500);
+};
+
 deleteBtn.addEventListener('click', () => {
   deleteNumbers([...numberToDisplay]);
 });
 
 checkNumber.addEventListener('click', () => {
-  console.log(parseInt(numberToDisplay));
-
-  if (parseInt(numberToDisplay) === randonNumber) {
-    console.log('win');
+  //conditions evaluating the number
+  if (numberToInt === randonNumber) {
+    displayMessage.textContent = 'Victory!';
+    toggleStylesWin();
+  } else if (numberToInt > randonNumber) {
+    displayMessage.textContent = 'Too high!';
+    callingToggleStylesWrong();
+  } else {
+    displayMessage.textContent = 'Too low!';
+    callingToggleStylesWrong();
   }
-  // if()
 });

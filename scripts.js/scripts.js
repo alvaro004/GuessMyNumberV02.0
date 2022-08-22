@@ -22,31 +22,31 @@ const n0 = document.getElementById('n-0');
 let numbers = [];
 let numberToInt;
 let numberToDisplay = '';
-let score = 10;
-let highScore = '';
+let score = 20;
+let highScore = 0;
 let randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
 
+//show the score
 const setScoreScreen = () => {
   scoreText.textContent = `SCORE: ${score}`;
 };
 
+// show the high score
 const setHighScore = () => {
   highScoreText.textContent = `HIGH SCORE: ${highScore}`;
 };
 
-//showing scores
-
-setScoreScreen();
-setHighScore();
+// evaluate the highScore
+const compareHighScores = () => {
+  if (score > highScore) highScore = score;
+};
 
 // displaying numbers in the screen
-
 const displayNumber = (numToDisplay) => {
   inputNumber.value = numToDisplay;
 };
 
 // reset elements
-
 const resetDisplayNumber = () => {
   numberToInt = '';
   numberToDisplay = '';
@@ -54,7 +54,6 @@ const resetDisplayNumber = () => {
 };
 
 // merge all numbers, then display it in the screen
-
 const mergeNumbers = (numbers) => {
   numbers.map((number) => (numberToDisplay += `${number}`));
   numberToInt = parseInt(numberToDisplay);
@@ -62,7 +61,6 @@ const mergeNumbers = (numbers) => {
 };
 
 // getting the numbers from the keyboard
-
 const retrieveNumber = (number) => {
   numbers.push(parseInt(number));
   mergeNumbers(numbers);
@@ -70,7 +68,6 @@ const retrieveNumber = (number) => {
 };
 
 // waiting for the user that click the numbers button to retrieve values
-
 n1.addEventListener('click', () => retrieveNumber(n1.textContent));
 n2.addEventListener('click', () => retrieveNumber(n2.textContent));
 n3.addEventListener('click', () => retrieveNumber(n3.textContent));
@@ -82,8 +79,7 @@ n8.addEventListener('click', () => retrieveNumber(n8.textContent));
 n9.addEventListener('click', () => retrieveNumber(n9.textContent));
 n0.addEventListener('click', () => retrieveNumber(n0.textContent));
 
-// --------------------
-
+// delete number according the array tht recieve
 const deleteNumbers = (arr) => {
   // delete the last element in the array
   arr.pop();
@@ -96,13 +92,12 @@ const deleteNumbers = (arr) => {
 };
 
 document.addEventListener('keyup', (e) => {
-  //to delete numbers
+  //to delete numbers if the user wants
   if (e.code === 'Backspace') {
     deleteNumbers([...numberToDisplay]);
   }
 
   // waiting for the user that click the numbers button in the keyboard to retrieve values
-
   switch (e.key) {
     case '1':
       retrieveNumber('1');
@@ -158,21 +153,22 @@ const callingToggleStylesWrong = () => {
   }, 500);
 };
 
+// Main Add Event Listeners
+
 deleteBtn.addEventListener('click', () => {
   deleteNumbers([...numberToDisplay]);
 });
 
 checkNumber.addEventListener('click', () => {
   //decrease teh counter
-
+  score -= 1;
+  setScoreScreen();
   if (score > 0) {
-    score -= 1;
-    setScoreScreen();
     //conditions evaluating the number
     if (numberToInt === randonNumber) {
       displayMessage.textContent = 'Victory!';
       toggleStylesWin();
-      highScore = score;
+      compareHighScores();
       setHighScore();
     } else if (numberToInt > randonNumber) {
       displayMessage.textContent = 'Too high!';
@@ -191,7 +187,8 @@ checkNumber.addEventListener('click', () => {
 
 tryAgainBtn.addEventListener('click', () => {
   randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
-  score = 10;
+  score = 20;
+  displayMessage.textContent = 'Start Guessing...';
   setScoreScreen();
   resetDisplayNumber();
 
@@ -200,3 +197,9 @@ tryAgainBtn.addEventListener('click', () => {
   mainConatinerNumbers.classList.remove('disable-button');
   mainConatinerNumbers.classList.remove('main-container-loose');
 });
+
+// calling functions
+
+//showing scores
+setScoreScreen();
+setHighScore();

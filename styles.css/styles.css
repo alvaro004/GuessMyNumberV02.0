@@ -60,6 +60,7 @@ h4 {
   margin: 0 0 2rem 0;
   border-radius: 1.5rem;
   padding: 0.8rem;
+  transition: 0.4s;
 }
 
 .layer-scores:hover {
@@ -93,12 +94,13 @@ h4 {
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  transition: 0.4s;
 }
 
 .left-side button:hover,
 .right-side button:hover {
   cursor: pointer;
-  background-color: rgb(168, 159, 159);
+  background-color: rgb(145, 145, 145);
   color: rgb(255, 255, 255);
   transition: 0.4s;
 }
@@ -133,6 +135,7 @@ h4 {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  transition: 0.4s;
 }
 
 .main-container-loose {
@@ -141,7 +144,7 @@ h4 {
 }
 
 .main-container-numbers:hover {
-  box-shadow: 0 0.4rem 3rem rgba(0, 0, 0, 15%);
+  box-shadow: 0 0.4rem 3rem rgba(0, 0, 0, 50%);
   transition: 0.4s;
 }
 
@@ -220,6 +223,7 @@ h4 {
   font-weight: bold;
   cursor: pointer;
   user-select: none;
+  transition: 0.4s;
 }
 
 .layer-screen-numbers span:hover {

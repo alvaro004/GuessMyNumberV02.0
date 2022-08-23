@@ -134,12 +134,14 @@ document.addEventListener('keyup', (e) => {
 
 //modal
 const active = document.querySelector('.box');
+const activeWin = document.querySelector('.box-won');
 const closeModal = document.querySelectorAll('.close-modal');
 const overlay = document.querySelector('.overlay');
 
 const closeModalFunc = () => {
   active.classList.remove('active');
   overlay.classList.remove('overlay-active');
+  activeWin.classList.remove('active');
 };
 
 closeModal.forEach((singleElement) => {
@@ -192,6 +194,8 @@ checkNumber.addEventListener('click', () => {
       toggleStylesWin();
       compareHighScores();
       setHighScore();
+      activeWin.classList.add('active');
+      overlay.classList.add('overlay-active');
     } else if (numberToInt > randonNumber) {
       displayMessage.textContent = 'Too high!';
       callingToggleStylesWrong();
@@ -235,6 +239,7 @@ tryAgainBtn.forEach((singleElement) => {
     setScoreScreen();
     resetDisplayNumber();
     closeModalFunc();
+    activeWin.classList.remove('active');
 
     displayGuessNumber.classList.remove('display-guess-number-win');
     inputNumber.classList.remove('input-bkg-white');

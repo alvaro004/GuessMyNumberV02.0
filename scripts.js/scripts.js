@@ -6,7 +6,7 @@ const inputNumber = document.getElementById('input-number');
 const checkNumber = document.getElementById('btn-check-number');
 const scoreText = document.getElementById('score-text');
 const highScoreText = document.getElementById('high-score-text');
-const tryAgainBtn = document.getElementById('btn-try-again');
+const tryAgainBtn = document.querySelectorAll('.btn-try-again');
 
 const n1 = document.getElementById('n-1');
 const n2 = document.getElementById('n-2');
@@ -22,7 +22,7 @@ const n0 = document.getElementById('n-0');
 let numbers = [];
 let numberToInt;
 let numberToDisplay = '';
-let score = 20;
+let score = 10;
 let highScore = 0;
 let randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
 
@@ -132,6 +132,28 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
+//modal
+const active = document.querySelector('.box');
+const closeModal = document.querySelectorAll('.close-modal');
+const overlay = document.querySelector('.overlay');
+
+const closeModalFunc = () => {
+  active.classList.remove('active');
+  overlay.classList.remove('overlay-active');
+};
+
+closeModal.forEach((singleElement) => {
+  singleElement.addEventListener('click', closeModalFunc);
+});
+
+overlay.addEventListener('click', closeModalFunc);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    closeModalFunc();
+  }
+});
+
 const toggleStylesWrong = () => {
   displayGuessNumber.classList.toggle('display-guess-number-wrong');
   inputNumber.classList.toggle('input-bkg-white');
@@ -178,6 +200,10 @@ checkNumber.addEventListener('click', () => {
       callingToggleStylesWrong();
     }
   } else {
+    //show modal
+    active.classList.add('active');
+    overlay.classList.add('overlay-active');
+
     mainConatinerNumbers.classList.toggle('disable-button');
     mainConatinerNumbers.classList.toggle('main-container-loose');
     highScore = score;
@@ -185,17 +211,36 @@ checkNumber.addEventListener('click', () => {
   }
 });
 
-tryAgainBtn.addEventListener('click', () => {
-  randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
-  score = 20;
-  displayMessage.textContent = 'Start Guessing...';
-  setScoreScreen();
-  resetDisplayNumber();
+// tryAgainBtn.addEventListener('click', () => {
+//   randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
+//   console.log('aaa');
+//   score = 10;
+//   displayMessage.textContent = 'Start Guessing...';
+//   setScoreScreen();
+//   resetDisplayNumber();
+//   closeModalFunc();
 
-  displayGuessNumber.classList.remove('display-guess-number-win');
-  inputNumber.classList.remove('input-bkg-white');
-  mainConatinerNumbers.classList.remove('disable-button');
-  mainConatinerNumbers.classList.remove('main-container-loose');
+//   displayGuessNumber.classList.remove('display-guess-number-win');
+//   inputNumber.classList.remove('input-bkg-white');
+//   mainConatinerNumbers.classList.remove('disable-button');
+//   mainConatinerNumbers.classList.remove('main-container-loose');
+// });
+
+tryAgainBtn.forEach((singleElement) => {
+  singleElement.addEventListener('click', () => {
+    randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
+    console.log('aaa');
+    score = 10;
+    displayMessage.textContent = 'Start Guessing...';
+    setScoreScreen();
+    resetDisplayNumber();
+    closeModalFunc();
+
+    displayGuessNumber.classList.remove('display-guess-number-win');
+    inputNumber.classList.remove('input-bkg-white');
+    mainConatinerNumbers.classList.remove('disable-button');
+    mainConatinerNumbers.classList.remove('main-container-loose');
+  });
 });
 
 // calling functions

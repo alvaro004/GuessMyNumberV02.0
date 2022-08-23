@@ -9,6 +9,7 @@ html {
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: rgb(245, 245, 245);
+  position: relative;
 }
 
 h1 {
@@ -79,11 +80,11 @@ h4 {
 
 /* button styles */
 
-.left-side button {
+.btn-try-again {
   margin: 0 0 4rem 0;
 }
 
-.left-side button,
+.btn-try-again,
 .right-side button {
   border: none;
   width: fit-content;
@@ -97,7 +98,7 @@ h4 {
   transition: 0.4s;
 }
 
-.left-side button:hover,
+.btn-try-again:hover,
 .right-side button:hover {
   cursor: pointer;
   background-color: rgb(145, 145, 145);
@@ -105,7 +106,7 @@ h4 {
   transition: 0.4s;
 }
 
-.left-side button:active,
+.btn-try-again:active,
 .right-side button:active {
   transform: translateY(-10%);
 }
@@ -259,6 +260,78 @@ h4 {
 
 .colum-2 {
   transform: translate(-18%, 20%) rotate(90deg);
+}
+
+/* modal styles */
+
+.main-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapp-close {
+  text-align: end;
+  margin: 0 2rem 0 0;
+}
+
+.x-icon {
+  background-color: inherit;
+  border: none;
+  font-size: 3rem;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-align: end;
+  width: fit-content;
+}
+
+.box {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40rem;
+  height: 40rem;
+  border-radius: 1rem;
+  background-color: rgb(208, 53, 53);
+  color: rgb(254, 254, 254);
+  font-size: 4rem;
+  text-align: center;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+.text-wrapp {
+  margin: 2rem;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-wrapp span {
+  margin: 0 0 3rem 0;
+}
+
+.active {
+  opacity: 1;
+  z-index: 10;
+  display: block;
+}
+
+.overlay-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+  transition: 0.2s ease-in-out;
 }
 
 /* -----------MOBILE DESIGN----------- */

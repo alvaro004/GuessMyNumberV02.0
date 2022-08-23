@@ -137,6 +137,8 @@ const active = document.querySelector('.box');
 const closeModal = document.querySelectorAll('.close-modal');
 const overlay = document.querySelector('.overlay');
 
+console.log(closeModal);
+
 const closeModalFunc = () => {
   active.classList.remove('active');
   overlay.classList.remove('overlay-active');

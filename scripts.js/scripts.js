@@ -7,7 +7,10 @@ const checkNumber = document.getElementById('btn-check-number');
 const scoreText = document.getElementById('score-text');
 const highScoreText = document.getElementById('high-score-text');
 const tryAgainBtn = document.querySelectorAll('.btn-try-again');
-
+const active = document.querySelector('.box');
+const activeWin = document.querySelector('.box-won');
+const closeModal = document.querySelectorAll('.close-modal');
+const overlay = document.querySelector('.overlay');
 const n1 = document.getElementById('n-1');
 const n2 = document.getElementById('n-2');
 const n3 = document.getElementById('n-3');
@@ -18,13 +21,16 @@ const n7 = document.getElementById('n-7');
 const n8 = document.getElementById('n-8');
 const n9 = document.getElementById('n-9');
 const n0 = document.getElementById('n-0');
-
 let numbers = [];
 let numberToInt;
 let numberToDisplay = '';
 let score = 10;
 let highScore = 0;
-let randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
+let randonNumber;
+
+//create random number
+const getRandomNumber = () =>
+  parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
 
 //show the score
 const setScoreScreen = () => {
@@ -67,18 +73,6 @@ const retrieveNumber = (number) => {
   numbers.shift();
 };
 
-// waiting for the user that click the numbers button to retrieve values
-n1.addEventListener('click', () => retrieveNumber(n1.textContent));
-n2.addEventListener('click', () => retrieveNumber(n2.textContent));
-n3.addEventListener('click', () => retrieveNumber(n3.textContent));
-n4.addEventListener('click', () => retrieveNumber(n4.textContent));
-n5.addEventListener('click', () => retrieveNumber(n5.textContent));
-n6.addEventListener('click', () => retrieveNumber(n6.textContent));
-n7.addEventListener('click', () => retrieveNumber(n7.textContent));
-n8.addEventListener('click', () => retrieveNumber(n8.textContent));
-n9.addEventListener('click', () => retrieveNumber(n9.textContent));
-n0.addEventListener('click', () => retrieveNumber(n0.textContent));
-
 // delete number according the array tht recieve
 const deleteNumbers = (arr) => {
   // delete the last element in the array
@@ -91,6 +85,54 @@ const deleteNumbers = (arr) => {
   displayNumber(numberToInt);
 };
 
+// modal functions
+
+const closeModalFunc = () => {
+  active.classList.remove('active');
+  overlay.classList.remove('overlay-active');
+  activeWin.classList.remove('active');
+};
+
+// reset at default styles
+const toggleStylesWrong = () => {
+  displayGuessNumber.classList.toggle('display-guess-number-wrong');
+  inputNumber.classList.toggle('input-bkg-white');
+};
+
+const toggleStylesWin = () => {
+  displayGuessNumber.classList.toggle('display-guess-number-win');
+  inputNumber.classList.toggle('input-bkg-white');
+  mainConatinerNumbers.classList.toggle('disable-button');
+};
+
+const callingToggleStylesWrong = () => {
+  // toggle the styles
+  toggleStylesWrong();
+  // waiting to remove them
+  setTimeout(() => {
+    toggleStylesWrong();
+    resetDisplayNumber();
+  }, 500);
+};
+
+const addModal = () => {
+  activeWin.classList.add('active');
+  overlay.classList.add('overlay-active');
+};
+
+// waiting for the user that click the numbers button to retrieve values
+n1.addEventListener('click', () => retrieveNumber(n1.textContent));
+n2.addEventListener('click', () => retrieveNumber(n2.textContent));
+n3.addEventListener('click', () => retrieveNumber(n3.textContent));
+n4.addEventListener('click', () => retrieveNumber(n4.textContent));
+n5.addEventListener('click', () => retrieveNumber(n5.textContent));
+n6.addEventListener('click', () => retrieveNumber(n6.textContent));
+n7.addEventListener('click', () => retrieveNumber(n7.textContent));
+n8.addEventListener('click', () => retrieveNumber(n8.textContent));
+n9.addEventListener('click', () => retrieveNumber(n9.textContent));
+n0.addEventListener('click', () => retrieveNumber(n0.textContent));
+
+//listening the buttons
 document.addEventListener('keyup', (e) => {
   //to delete numbers if the user wants
   if (e.code === 'Backspace') {
@@ -132,17 +174,7 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
-//modal
-const active = document.querySelector('.box');
-const activeWin = document.querySelector('.box-won');
-const closeModal = document.querySelectorAll('.close-modal');
-const overlay = document.querySelector('.overlay');
-
-const closeModalFunc = () => {
-  active.classList.remove('active');
-  overlay.classList.remove('overlay-active');
-  activeWin.classList.remove('active');
-};
+// Event listening for the modal
 
 closeModal.forEach((singleElement) => {
   singleElement.addEventListener('click', closeModalFunc);
@@ -155,27 +187,6 @@ document.addEventListener('keydown', function (e) {
     closeModalFunc();
   }
 });
-
-const toggleStylesWrong = () => {
-  displayGuessNumber.classList.toggle('display-guess-number-wrong');
-  inputNumber.classList.toggle('input-bkg-white');
-};
-
-const toggleStylesWin = () => {
-  displayGuessNumber.classList.toggle('display-guess-number-win');
-  inputNumber.classList.toggle('input-bkg-white');
-  mainConatinerNumbers.classList.toggle('disable-button');
-};
-
-const callingToggleStylesWrong = () => {
-  // toggle the styles
-  toggleStylesWrong();
-  // waiting to remove them
-  setTimeout(() => {
-    toggleStylesWrong();
-    resetDisplayNumber();
-  }, 500);
-};
 
 // Main Add Event Listeners
 
@@ -194,8 +205,7 @@ checkNumber.addEventListener('click', () => {
       toggleStylesWin();
       compareHighScores();
       setHighScore();
-      activeWin.classList.add('active');
-      overlay.classList.add('overlay-active');
+      addModal();
     } else if (numberToInt > randonNumber) {
       displayMessage.textContent = 'Too high!';
       callingToggleStylesWrong();
@@ -215,32 +225,15 @@ checkNumber.addEventListener('click', () => {
   }
 });
 
-// tryAgainBtn.addEventListener('click', () => {
-//   randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
-//   console.log('aaa');
-//   score = 10;
-//   displayMessage.textContent = 'Start Guessing...';
-//   setScoreScreen();
-//   resetDisplayNumber();
-//   closeModalFunc();
-
-//   displayGuessNumber.classList.remove('display-guess-number-win');
-//   inputNumber.classList.remove('input-bkg-white');
-//   mainConatinerNumbers.classList.remove('disable-button');
-//   mainConatinerNumbers.classList.remove('main-container-loose');
-// });
-
-tryAgainBtn.forEach((singleElement) => {
-  singleElement.addEventListener('click', () => {
-    randonNumber = parseInt((Math.random() * (20 - 0) + 0).toFixed(0));
-    console.log('aaa');
+tryAgainBtn.forEach((singleTryBtn) => {
+  singleTryBtn.addEventListener('click', () => {
+    randonNumber = getRandomNumber();
     score = 10;
     displayMessage.textContent = 'Start Guessing...';
     setScoreScreen();
     resetDisplayNumber();
     closeModalFunc();
     activeWin.classList.remove('active');
-
     displayGuessNumber.classList.remove('display-guess-number-win');
     inputNumber.classList.remove('input-bkg-white');
     mainConatinerNumbers.classList.remove('disable-button');
@@ -253,3 +246,6 @@ tryAgainBtn.forEach((singleElement) => {
 //showing scores
 setScoreScreen();
 setHighScore();
+
+//set random number
+randonNumber = getRandomNumber();

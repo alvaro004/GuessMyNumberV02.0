@@ -91,6 +91,7 @@ const closeModalFunc = () => {
   active.classList.remove('active');
   overlay.classList.remove('overlay-active');
   activeWin.classList.remove('active');
+  activeWin.classList.remove('scale-in-center');
 };
 
 // reset at default styles
@@ -118,6 +119,7 @@ const callingToggleStylesWrong = () => {
 const addModal = () => {
   activeWin.classList.add('active');
   overlay.classList.add('overlay-active');
+  activeWin.classList.add('scale-in-center');
 };
 
 // waiting for the user that click the numbers button to retrieve values
@@ -217,7 +219,7 @@ checkNumber.addEventListener('click', () => {
     //show modal
     active.classList.add('active');
     overlay.classList.add('overlay-active');
-
+    active.classList.add('scale-in-center');
     mainConatinerNumbers.classList.toggle('disable-button');
     mainConatinerNumbers.classList.toggle('main-container-loose');
     highScore = score;

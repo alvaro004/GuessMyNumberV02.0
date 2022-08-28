@@ -222,8 +222,6 @@ checkNumber.addEventListener('click', () => {
     active.classList.add('scale-in-center');
     mainConatinerNumbers.classList.toggle('disable-button');
     mainConatinerNumbers.classList.toggle('main-container-loose');
-    highScore = score;
-    setHighScore();
   }
 });
 
